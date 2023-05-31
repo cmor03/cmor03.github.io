@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: tan;
+            flex-direction: column;  /* make main axis vertical */
+            font-family: "Font Name", helvetica;
+        }
+        #animationBox img {
+            display: none;
+            max-width: 80%; /* Adjust this value to control the size of the images */
+            height: auto;
+            margin: auto;
+        }
+        #animationBox img.active {
+            display: block;
+        }
+        #animationText {
+            margin-top: 50px; /* Adjust this value to increase/decrease the space between the image and the text */
+            text-align: center;  /* Align the text in the center */
+            font-size: 2em;  /* Increase the size of the text */
+        }
+        #nextButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ddd;
+            border: none;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1.5em;  /* Increase the size of the button text */
+        }
+    </style>
+</head>
+<body>
+    <div id="animationBox">
+        <script>
+            for (let i = 1; i <= 17; i++) {
+                document.write(`<img id="image-${i}" src="animation-${i.toString().padStart(2, '0')}.png">`);
+            }
+        </script>
+    </div>
+    <div id="animationText">
+        <p>This took me longer than I'm willing to admit.</p>
+    </div>
+    <button id="nextButton" onclick="location.href='page3.html'">Next</button>
+    <script>
+        let currentImage = 1;
+        const totalImages = 17;
+
+        document.getElementById('image-1').classList.add('active');
+
+        setInterval(function() {
+            document.getElementById(`image-${currentImage}`).classList.remove('active');
+
+            currentImage = currentImage % totalImages + 1;
+            
+            document.getElementById(`image-${currentImage}`).classList.add('active');
+        }, 200);  
+    </script>
+</body>
+</html>
