@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>page1-password</title>
+  <title>super secret project</title>
   <style>
     body {
       background-color: black;
@@ -46,18 +46,16 @@
 
   <script>
     document.getElementById("passwordForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Prevent form submission
+      event.preventDefault(); 
 
-      // Retrieve the entered password
       var enteredPassword = document.getElementById("passwordInput").value;
 
-      // Compare the entered password with the hardcoded password
-      var hardcodedPassword = "mines"; // Replace with your own password
+      var hardcodedPassword = "mines";
       if (enteredPassword === hardcodedPassword) {
         // Redirect to page 2
         window.location.href = "page2.html";
       } else {
-        // Password incorrect, display an error message or take any other action
+   
         alert("Incorrect password. Please try again.");
       }
     });
