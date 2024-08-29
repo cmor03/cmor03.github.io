@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
 </head>
 <body>
     <nav>
         <ul>
             <li><a href="#home"><i class="fas fa-home"></i></a></li>
-            <li><a href="#blog"><i class="fas fa-newspaper"></i></a></li>        </ul>
+            <!-- <li><a href="#blog"><i class="fas fa-newspaper"></i></a></li>        </ul> -->
     </nav>
 
-    <div id="toggle-container">
+    <!-- <div id="toggle-container">
         <i id="toggle-icon" class="fas fa-sun" onclick="toggleDarkMode()"></i>
-    </div>
+    </div> -->
 
     <div id="content">
         <section id="hero">
@@ -26,37 +27,93 @@
                 <img src="/page_content/main.png" alt="Hero Image">
             </div>
             <div id="hero-text">
-                <h1>Welcome</h1>
+                <h2 class="text-3xl font-bold mb-4">Welcome</h2>
                 <p>My name is Colton,<br><p>I'm so glad you're here.</p>
             </div>
         </section>
 
         <div class="scroll-down-arrow"></div>
 
-        <section id="bio">
-            <h2>About Me</h2>
-            <p>This is where you can add your bio information. Make it engaging and informative to give visitors a good impression of who you are and what you do.</p>
+        <div class="container mx-auto px-4 py-8">
+        <section id="bio" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">About Me</h2>
+            <h1 class="text-4xl font-bold mb-2">Colton H. Morris</h1>
+            <p class="text-xl">'25 Colorado School of Mines Grad | B.S. Computer Science | GPA: 3.75</p>
         </section>
 
-        <section id="projects">
-            <h2>Side Projects</h2>
-            <p>Showcase your side projects here. You can list them with brief descriptions or create a grid of project cards with images and links.</p>
+        <section id="projects" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Notable Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Ground Water Depletion</h3>
+                    <p>Interactive web tool demonstrating stream flow depletion due to pumping well</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Disaster Detection</h3>
+                    <p>Tweet sentiment analysis for disaster-related tweets (Kaggle Challenge)</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">CS Website Redesign</h3>
+                    <p>Led 10-week project, 85% reduction in navigation time</p>
+                </div>
+            </div>
         </section>
 
-        <section id="experience">
-            <h2>Experience</h2>
-            <p>List your professional experience here. You can use a timeline or a series of cards to highlight your work history and key accomplishments.</p>
+        <section id="experience" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Experience</h2>
+            <div class="space-y-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold">Parsons Corporation</h3>
+                    <p class="text-gray-600">Machine Learning /Software Development Intern | June 2024 – August 2024</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>Developed Spring Boot backend, Angular frontend, MongoDB database for ADS-B data tools</li>
+                        <li>Created Python scripts for antenna data processing</li>
+                        <li>Implemented Docker for database and backend services</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold">X (Formerly Twitter)</h3>
+                    <p class="text-gray-600">Student Developer | April 2024</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>Developed app using unreleased X API and Grok 2.0</li>
+                        <li>Built with Node.js backend and React frontend</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <p>Highlight your key skills in this section. You might want to use progress bars, icons, or a tag cloud to visually represent your skill set.</p>
+        <section id="skills" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="font-semibold mb-2">Front-End</h3>
+                    <p>UI/UX, Figma, Angular, HTML, CSS/SCSS</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="font-semibold mb-2">Back-End</h3>
+                    <p>Python, Java, Linux, Git, C, C++, NoSQL, SQLite</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="font-semibold mb-2">Mobile</h3>
+                    <p>Unity + C#, Swift, React</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="font-semibold mb-2">Machine Learning</h3>
+                    <p>Python, Scikit-learn, Pandas</p>
+                </div>
+            </div>
         </section>
 
-        <section id="achievements">
-            <h2>Achievements</h2>
-            <p>Share your notable achievements here. This could include awards, certifications, or significant milestones in your career or personal projects.</p>
+        <section id="achievements" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Achievements & Leadership</h2>
+            <ul class="list-disc list-inside space-y-2">
+                <li>ACM Vice President</li>
+                <li>Grand Challenges Scholar</li>
+                <li>Computer Science Ambassador</li>
+                <li>Teaching Assistant for Software Engineering</li>
+            </ul>
         </section>
+        </div>
     </div>
 
     <section class="social-icons">
@@ -71,6 +128,5 @@
         <p>Built with ❤️ and open source software.</p>
     </footer>
     </div>
-    
 </body>
 </html>
