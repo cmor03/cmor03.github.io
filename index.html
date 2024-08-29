@@ -1,531 +1,132 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="en">
 <head>
-
-    <!--- basic page needs
-    ================================================== -->
-    <meta charset="utf-8">
-    <title>Colton Morris</title>
-    <meta name="description" content="Colton Morris' Personal Website">
-    <meta name="author" content="Colton Morris">
-
-    <!-- mobile specific metas
-    ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/vendor.css">
-
-    <!-- script
-    ================================================== -->
-    <script defer src="js/vendor/fontawesome/all.min.js"></script>
-
-    <!-- favicons
-    ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
 </head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home"><i class="fas fa-home"></i></a></li>
+            <!-- <li><a href="#blog"><i class="fas fa-newspaper"></i></a></li>        </ul> -->
+    </nav>
 
-<body id="top" class="ss-preload">
+    <!-- <div id="toggle-container">
+        <i id="toggle-icon" class="fas fa-sun" onclick="toggleDarkMode()"></i>
+    </div> -->
 
+    <div id="content">
+        <section id="hero">
+            <div id="hero-image">
+                <img src="/page_content/main.png" alt="Hero Image">
+            </div>
+            <div id="hero-text">
+                <h2 class="text-3xl font-bold mb-4">Welcome</h2>
+                <p>My name is Colton,<br><p>I'm so glad you're here.</p>
+            </div>
+        </section>
 
-    <!-- preloader
-    ================================================== -->
-    <div id="preloader">
-        <div id="loader"></div>
+        <div class="scroll-down-arrow"></div>
+
+        <div class="container mx-auto px-4 py-8">
+        <section id="bio" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">About Me</h2>
+            <h1 class="text-4xl font-bold mb-2">Colton H. Morris</h1>
+            <p class="text-xl">'25 Colorado School of Mines Grad | B.S. Computer Science | GPA: 3.75</p>
+        </section>
+
+        <section id="projects" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Notable Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Ground Water Depletion</h3>
+                    <p>Interactive web tool demonstrating stream flow depletion due to pumping well</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Disaster Detection</h3>
+                    <p>Tweet sentiment analysis for disaster-related tweets (Kaggle Challenge)</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">CS Website Redesign</h3>
+                    <p>Led 10-week project, 85% reduction in navigation time</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Experience</h2>
+            <div class="space-y-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold">Parsons Corporation</h3>
+                    <p class="text-gray-600">Machine Learning /Software Development Intern | June 2024 – August 2024</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>Developed Spring Boot backend, Angular frontend, MongoDB database for ADS-B data tools</li>
+                        <li>Created Python scripts for antenna data processing</li>
+                        <li>Implemented Docker for database and backend services</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold">X (Formerly Twitter)</h3>
+                    <p class="text-gray-600">Student Developer | April 2024</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>Developed app using unreleased X API and Grok 2.0</li>
+                        <li>Built with Node.js backend and React frontend</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="font-semibold mb-2">Front-End</h3>
+                    <p>UI/UX, Figma, Angular, HTML, CSS/SCSS</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="font-semibold mb-2">Back-End</h3>
+                    <p>Python, Java, Linux, Git, C, C++, NoSQL, SQLite</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="font-semibold mb-2">Mobile</h3>
+                    <p>Unity + C#, Swift, React</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="font-semibold mb-2">Machine Learning</h3>
+                    <p>Python, Scikit-learn, Pandas</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Achievements & Leadership</h2>
+            <ul class="list-disc list-inside space-y-2">
+                <li>ACM Vice President</li>
+                <li>Grand Challenges Scholar</li>
+                <li>Computer Science Ambassador</li>
+                <li>Teaching Assistant for Software Engineering</li>
+            </ul>
+        </section>
+        </div>
     </div>
 
-
-    <!-- header
-    ================================================== -->
-    <header class="s-header">
-        <div class="row s-header__nav-wrap">
-            <nav class="s-header__nav">
-                <ul>
-                    <li class="current"><a class="smoothscroll" href="#hero">Home</a></li>
-                    <li><a class="smoothscroll" href="#about">About</a></li>
-                    <li><a class="smoothscroll" href="#resume">Resume</a></li>
-                    <li><a class="smoothscroll" href="#portfolio">Projects</a></li>
-                    <li><a class="smoothscroll" href="#contact">Connect</a></li>
-                </ul>
-            </nav>
-        </div> <!-- end row -->
-        
-        <a class="s-header__menu-toggle" href="#0" title="Menu">
-            <span class="s-header__menu-icon"></span>
-        </a>
-    </header> <!-- end s-header -->
-
-
-    <!-- hero
-    ================================================== -->
-    <section id="hero" class="s-hero target-section">
-
-        <div class="s-hero__bg rellax" data-rellax-speed="-7"></div>
-
-        <div class="row s-hero__content">
-            <div class="column">
-
-                <div class="s-hero__content-about">
-
-                    <h1>I'm Colton Morris.</h1>
-
-                    <h3>
-                    I'm a <span>student</span> learning about <br><span>Computer Science</span> + <span>Data Science</span> at the
-                    <span>Colorado School of Mines</span>.<br>I like creating
-                    high quality code that makes the world a better place.<a class="smoothscroll" href="#about"> Scroll</a>
-                    to learn more <a class="smoothscroll" href="#about">about me</a>.
-                    </h3>
-                    <div class="s-hero__content-social">
-                        <a href="#0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                        <a href="#0"><i class="fab fa-github-square" aria-hidden="true"></i></a>
-                    </div>
-
-                </div> <!-- end s-hero__content-about -->
-
-            </div>
-        </div> <!-- s-hero__content -->
-
-        <div class="s-hero__scroll">
-            <a href="#about" class="s-hero__scroll-link smoothscroll">
-                <span class="scroll-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M18.707 12.707L17.293 11.293 13 15.586 13 6 11 6 11 15.586 6.707 11.293 5.293 12.707 12 19.414z"></path></svg>
-                </span>
-                <span class="scroll-text">Scroll Down</span>
-            </a>
-        </div> <!-- s-hero__scroll -->
-
-    </section> <!-- end s-hero -->
-
-
-    <!-- about
-    ================================================== -->
-    <section id="about" class="s-about target-section">
-
-        <div class="row">
-            <div class="column large-3 tab-12">
-                <img class="s-about__pic" src="images/avatars/user-09.jpg" alt="">
-            </div>
-            <div class="column large-9 tab-12 s-about__content">
-                <h3>About Me</h3>
-                <p>
-                  While pursuing my degree, 
-                  I keep myself busy with Mines' Association for Computing Machinery Club (ACM).
-                  If I'm not squashing bugs on Mines' notorious Clue Game CSCI306 assignment, I'm on the Rugby pitch playing second row. 
-                  I'm interested in data science and machine learning, and I'm always looking for new projects to contribute to. I like running, 
-                  going to the gym, and biking through the beautiful town of Golden, CO.
-                  <br><br>
-
-                  <h3>Why CS</h3>
-
-                  When I was 11 years old, my brother introduced me and my sister to "The Hour of Code" upon returning from school one day. Witnessing the possibilities that could be achieved with just a few lines of code left an indelible impression on me. Over the course of the following decade, my journey in Computer Science has seen me craft thousands of lines of code, contribute to numerous projects, and cultivate a profound appreciation for the boundless potential of technology.
-                </p>
-                <hr>
-                <div class="row s-about__content-bottom">
-                    <div class="column w-1000-stack">
-                        <a href="CMorris_Resume.docx" class="btn btn--download" download>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
-                                <path d="M12 16L16 11 13 11 13 4 11 4 11 11 8 11z"></path>
-                                <path d="M20,18H4v-7H2v7c0,1.103,0.897,2,2,2h16c1.103,0,2-0.897,2-2v-7h-2V18z"></path>
-                            </svg>
-                            Download CV
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- end row -->
-
-    </section> <!-- end s-about -->
-
-
-    <!-- resume
-    ================================================== -->
-    <section id="resume" class="s-resume target-section">
-        
-        <div class="row s-resume__section">
-            <div class="column large-3 tab-12">
-                <h3 class="section-header-allcaps">Experience</h3>
-            </div>
-            <div class="column large-9 tab-12">
-                <div class="resume-block">
-
-                    <div class="resume-block__header">
-                        <h4 class="h3">Parsons Corporation</h4>
-                        <p class="resume-block__header-meta">
-                            <span>Software Development Intern</span> 
-                            <span class="resume-block__header-date">
-                                June 2023 - August 2023
-                            </span>
-                        </p>
-                    </div>
-                    <p>
-                    I've accepted a 2024 Summer Internship with Parsons Corporation, a defense contractor. 
-                    I'll be working with them developing machine learning software. Be sure to check back for updates!
-                    </p>
-
-                </div> <!-- end resume-block -->
-                <div class="resume-block">
-
-                    <div class="resume-block__header">
-                        <h4 class="h3">Association for Computing Machinery</h4>
-                        <p class="resume-block__header-meta">
-                            <span>Vice President</span> 
-                            <span class="resume-block__header-date">
-                                April 2024 - May 2025
-                            </span>
-                        </p>
-                    </div>
-                    <p>
-                    I lead initiatives, foster collaboration, and promote innovation within the organization. I strive to promote diversity while improving visibility on campus. 
-                    </p>
-
-                </div> <!-- end resume-block -->
-                <div class="resume-block">
-
-                    <div class="resume-block__header">
-                        <h4 class="h3">Innovation Labs</h4>
-                        <p class="resume-block__header-meta">
-                            <span>Accounting Lead</span> 
-                            <span class="resume-block__header-date">
-                                January 2022 - June 2023
-                            </span>
-                        </p>
-                    </div>
-
-                    <p>
-                    I was responsible for overseeing the financial management of 6 makerspace labs, including the allocation of funds for repair materials and equipment. Additionally, I ensured the labs were well-stocked and provided training to students and Lab Facilitators on the proper use of equipment.
-                    </p>
-
-                </div> <!-- end resume-block -->
-
-            </div>
-        </div> <!-- s-resume__section -->
-
-
-        <div class="row s-resume__section">
-            <div class="column large-3 tab-12">
-                <h3 class="section-header-allcaps">Education</h3>
-            </div>
-            <div class="column large-9 tab-12">
-                <div class="resume-block">
-
-                    <div class="resume-block__header">
-                        <h4 class="h3">Colorado School of Mines</h4>
-                        <p class="resume-block__header-meta">
-                            <span>B.S. Computer Science + Data Science </span> 
-                            <span class="resume-block__header-date">
-                                June 2025
-                            </span>
-                        </p>
-                    </div>
-
-                    <p>
-                    Dean's List (Fall '23), VP of the Association for Computing Machinery Club (ACM), Rugby player.
-                    </p>
-
-                </div> <!-- end resume-block -->
-
-                <div class="resume-block">
-
-                    <div class="resume-block__header">
-                        <h4 class="h3">Pomperaug Regional High School</h4>
-                        <p class="resume-block__header-meta">
-                            <span>Diploma</span> 
-                            <span class="resume-block__header-date">
-                                August 2021
-                            </span>
-                        </p>
-                    </div>
-                    <p>
-                    Cross-country, Dive, French Honor Society member.
-                    </p>
-
-                </div> <!-- end resume-block -->
-            </div>
-        </div> <!-- s-resume__section -->
-
-    </section> <!-- end s-resume -->
-
-
-    <!-- portfolio
-    ================================================== -->
-    <section id="portfolio" class="s-portfolio target-section">
-
-        <div class="row s-portfolio__header">
-            <div class="column large-12">
-                <h3>A Few Of My Latest Projects</h3>
-            </div>
-        </div>
-
-        <div class="row collapse block-large-1-4 block-medium-1-3 block-tab-1-2 block-500-stack folio-list">
-
-            <div class="column folio-item">
-                <a href="#modal-01" class="folio-item__thumb">
-                    <img src="images/proj_icons/clue.jpeg" 
-                         srcset="images/proj_icons/clue.jpeg 1x, 
-                                 images/proj_icons/clue.jpeg 2x" alt="">
-                </a>
-            </div> <!-- end folio-item -->
-
-            <div class="column folio-item">
-                <a href="#modal-02" class="folio-item__thumb">
-                    <img src="images/proj_icons/xdisaster.jpeg" 
-                         srcset="images/proj_icons/xdisaster.jpeg 1x, 
-                                 images/proj_icons/xdisaster.jpeg 2x" alt="">
-                </a>                
-            </div> <!-- end folio-item -->
-
-            <div class="column folio-item">
-                <a href="#modal-03" class="folio-item__thumb">
-                    <img src="images/proj_icons/fitapi.jpeg" 
-                         srcset="images/proj_icons/fitapi.jpeg 1x, 
-                                 images/proj_icons/fitapi.jpeg 2x" alt="">
-                </a>                
-            </div> <!-- end folio-item -->
-
-            <div class="column folio-item">
-                <a href="#modal-04" class="folio-item__thumb">
-                    <img src="images/proj_icons/gcsp.jpeg" 
-                         srcset="images/proj_icons/gcsp.jpeg 1x, 
-                                 images/proj_icons/gcsp.jpeg 2x" alt="">
-                </a>
-            </div> <!-- end folio-item -->
-
-            <div class="column folio-item">
-                <a href="#modal-05" class="folio-item__thumb">
-                    <img src="images/proj_icons/mm.jpeg" 
-                         srcset="images/proj_icons/mm.jpeg 1x, 
-                                 images/proj_icons/mm.jpeg 2x" alt="">
-                </a>
-            </div> <!-- end folio-item -->
-
-            <div class="column folio-item">
-                <a href="#modal-06" class="folio-item__thumb">
-                    <img src="images/portfolio/7.jpg" 
-                         srcset="images/portfolio/7.jpg 1x, 
-                         images/portfolio/7.jpg 2x" alt="">
-                </a>
-            </div> <!-- end folio-item -->
-
-        </div> <!-- end folio-list -->
-
-
-        <!-- Modal Templates Popup
-        =========================================================== -->
-        <div id="modal-01" hidden>
-            <div class="modal-popup">
-                <img src="images/portfolio/gallery/MinesMarketplace2.png" alt="" />
-    
-                <div class="modal-popup__desc">
-                    <h5>Mines Marketplace</h5>
-                    <p>Currently developing a mobile marketplace for Colorado School of Mines students.</p>
-                    <ul class="modal-popup__cat">
-                        <li>React-Native</li>
-                        <li>Firebase</li>
-                        <li>UI/UX</li>
-                    </ul>
-                </div>
-    
-            </div>
-        </div> <!-- end modal -->
-
-        <div id="modal-02" hidden>
-            <div class="modal-popup">
-                <img src="images/portfolio/gallery/g-lamp.jpg" alt="" />
-    
-                <div class="modal-popup__desc">
-                    <h5>The Lamp</h5>
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-                    <ul class="modal-popup__cat">
-                        <li>Branding</li>
-                    </ul>
-                </div>
-    
-            </div>
-        </div> <!-- end modal -->
-
-        <div id="modal-03" hidden>
-            <div class="modal-popup">
-                <img src="images/portfolio/gallery/g-minimalismo.jpg" alt="" />
-    
-                <div class="modal-popup__desc">
-                    <h5>Minimalismo</h5>
-                    <p>Exercitationem reprehenderit quod explicabo consequatur aliquid ut magni ut. Deleniti quo corrupti illum velit eveniet ratione necessitatibus ipsam mollitia.</p>
-                    <ul class="modal-popup__cat">
-                        <li>Product Design</li>
-                    </ul>
-                </div>
-    
-                <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-            </div>
-        </div> <!-- end modal -->
-
-        <div id="modal-04" hidden>
-            <div class="modal-popup">
-                <img src="images/portfolio/gallery/g-shutterbug.jpg" alt="" />
-    
-                <div class="modal-popup__desc">
-                    <h5>Shutterbug</h5>
-                    <p>Dolores velit qui quos nobis. Aliquam delectus voluptas quos possimus non voluptatem voluptas voluptas. Est doloribus eligendi porro doloribus voluptatum.</p>
-                    <ul class="modal-popup__cat">
-                        <li>E-Commerce</li>
-                    </ul>
-                </div>
-    
-                <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-            </div>
-        </div> <!-- end modal -->
-
-        <div id="modal-05" hidden>
-            <div class="modal-popup">
-
-                <img src="images/portfolio/gallery/g-fuji.jpg" alt="" />
-    
-                <div class="modal-popup__desc">
-                    <h5>Fuji</h5>
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-                    <ul class="modal-popup__cat">
-                        <li>Product Design</li>
-                    </ul>
-                </div>
-    
-                <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-            </div>
-        </div> <!-- end modal -->
-
-        <div id="modal-06" hidden>
-            <div class="modal-popup">
-                <img src="images/portfolio/gallery/g-skaterboy.jpg" alt="" />
-    
-                <div class="modal-popup__desc">
-                    <h5>Skaterboy</h5>
-                    <p>Quisquam vel libero consequuntur autem voluptas. Qui aut vero. Omnis fugit mollitia cupiditate voluptas. Aenean sollicitudin, lorem quis bibendum auctor.</p>
-                    <ul class="modal-popup__cat">
-                        <li>Branding</li>
-                        <li>Product Design</li>
-                    </ul>
-                </div>
-    
-                <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-            </div>
-        </div> <!-- end modal -->
-
-        <div id="modal-07" hidden>
-            <div class="modal-popup">
-                <img src="images/portfolio/gallery/g-rucksack.jpg" alt="" />
-    
-                <div class="modal-popup__desc">
-                    <h5>Rucksack</h5>
-                    <p>Odio soluta enim quos sit asperiores rerum rerum repudiandae cum. Vel voluptatem alias qui assumenda iure et expedita voluptatem. Ratione officiis quae.</p>
-                    <ul class="modal-popup__cat">
-                        <li>Branding</li>
-                        <li>Product Design</li>
-                    </ul>
-                </div>
-    
-                <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-            </div>
-        </div> <!-- end modal -->
-
-        <div id="modal-08" hidden>
-            <div class="modal-popup">
-                <img src="images/portfolio/gallery/g-sanddunes.jpg" alt="" />
-    
-                <div class="modal-popup__desc">
-                    <h5>Sand Dunes</h5>
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-                    <ul class="modal-popup__cat">
-                        <li>Web Design</li>
-                    </ul>
-                </div>
-    
-                <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-            </div>
-        </div> <!-- end modal -->
-
-
-    </section> <!-- end s-portfolio -->
-
-    <!-- contact
-    ================================================== -->
-    <section id="contact" class="s-contact target-section">
-
-        <div class="row s-contact__header">
-            <div class="column large-12">
-                <h3 class="section-header-allcaps">Say Hello</h3>
-            </div>
-        </div>
-
-        <div class="row s-contact__content">
-
-            <div class="column large-7 medium-12">
-
-                <h4 class="huge-text">
-                Thanks for checking out my page. I hope you've learned a little bit more about me. Don't hesitate to reach out!
-                </h4>
-
-            </div>
-
-            <div class="column large-4 medium-12">
-
-                <div class="row contact-infos">
-                    <div class="column large-12 medium-6 tab-12">
-                        <div class="contact-block">
-                            <h5 class="contact-block__header">
-                                Email
-                            </h5>
-                            <p class="contact-block__content">
-                                <a class="mailtoui" href="mailto:coltonhmorris@gmail.com">coltonhmorris@gmail.com</a>
-                            </p>
-                        </div> <!-- end contact-block -->
-                    </div>
-
-                    <div class="column large-12">
-                        <a href="mailto:coltonhmorris@gmail.com" class="mailtoui btn btn--primary h-full-width">Let's Talk</a>
-                    </div>
-                </div> <!-- end contact-infos -->
-
-            </div>
-        </div> <!-- s-contact__content -->
-
-    </section> <!-- end s-contact -->
-    
-
-    <!-- footer
-    ================================================== -->
-    <footer class="s-footer">
-        <div class="row">
-            <div class="column large-4 medium-6 w-1000-stack s-footer__social-block">
-                <ul class="s-footer__social">
-                    <li><a href="#0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
-                    <li><a href="#0"><i class="fab fa-github-square" aria-hidden="true"></i></a></li>
-                </ul>
-            </div>
-
-            <div class="column large-7 medium-6 w-1000-stack ss-copyright">
-                <span>© Copyright Ceevee 2021</span> 
-                <span>Edited by Colton Morris</span>
-            </div>
-        </div>
-
-        <div class="ss-go-top">
-            <a class="smoothscroll" title="Back to Top" href="#top">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v2H6zm5 10v6h2v-6h5l-6-6-6 6z"/></svg>
-             </a>
-        </div> <!-- end ss-go-top -->
+    <section class="social-icons">
+        <a href="https://github.com/cmor03" target="_blank" rel="noopener noreferrer" class="icon-link github-icon" aria-label="GitHub Profile"></a>
+        <a href="https://www.linkedin.com/in/coltonmorris25" target="_blank" rel="noopener noreferrer" class="icon-link linkedin-icon" aria-label="LinkedIn Profile"></a>
+        <a href="mailto:dev.coltonmorris@gmail.com" class="icon-link email-icon" aria-label="Send Email"></a>
+      </section>
+
+    <di class="footer">    
+    <footer>
+        <p>&copy; 2024 Colton Morris, all rights reserved.</p>
+        <p>Built with ❤️ and open source software.</p>
     </footer>
-
-
-    <!-- Java Script
-    ================================================== -->
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-
+    </div>
 </body>
-
 </html>
