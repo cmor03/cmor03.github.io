@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colton H. Morris - Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-8">Blog</h1>
+        <div id="articles-container" class="space-y-8">
+            <!-- Articles will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        async function fetchArticles() {
+            try {
+                const response = await fetch('articles');
+                const text = await response.text();
+                return parseArticles(text);
+            } catch (error) {
+                console.error('Error fetching articles:', error);
+                return [];
+            }
+        }
+
+        function parseArticles(text) {
+            const articles = [];
+            const lines = text.split('\n');
+            let currentArticle = {};
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (line === '') continue;
+
+                if (!currentArticle.title) {
+                    currentArticle.title = line;
+                } else if (!currentArticle.date) {
+                    currentArticle.date = new Date(line);
+                } else {
+                    if (!currentArticle.content) currentArticle.content = '';
+                    currentArticle.content += line + '\n';
+                }
+
+                if (i === lines.length - 1 || (lines[i+1] && !lines[i+1].trim())) {
+                    articles.push(currentArticle);
+                    currentArticle = {};
+                }
+            }
+
+            return articles.sort((a, b) => b.date - a.date);
+        }
+
+        function displayArticles(articles) {
+            const container = document.getElementById('articles-container');
+            articles.forEach(article => {
+                const articleElement = document.createElement('article');
+                articleElement.className = 'bg-white rounded-lg shadow-md p-6';
+                articleElement.innerHTML = `
+                    <h2 class="text-2xl font-bold mb-2">${article.title}</h2>
+                    <p class="text-gray-600 mb-4">${article.date.toLocaleDateString()}</p>
+                    <p>${article.content}</p>
+                `;
+                container.appendChild(articleElement);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const articles = await fetchArticles();
+            displayArticles(articles);
+        });
+    </script>
+</body>
+</html>

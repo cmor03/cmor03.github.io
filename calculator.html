@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compensation Comparator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+</head>
+
+<body class="bg-gray-100 p-4">
+    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
+        <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Compensation Comparator</h1>
+
+        <div id="offerForms"></div>
+
+        <button id="addOffer" class="mt-4 bg-green-500 text-white p-2 rounded-md hover:bg-green-600">Add Another
+            Offer</button>
+        <button id="calculate" class="mt-4 ml-4 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">Compare
+            Offers</button>
+
+        <div id="results" class="mt-8 hidden">
+            <!-- Results content (same as before) -->
+        </div>
+    </div>
+
+    <script>
+        let offerCount = 0;
+        const offerForms = document.getElementById('offerForms');
+        const addOfferBtn = document.getElementById('addOffer');
+        const calculateBtn = document.getElementById('calculate');
+        const resultsDiv = document.getElementById('results');
+
+        function createOfferForm() {
+            offerCount++;
+            const offerId = `offer${offerCount}`;
+            const offerDiv = document.createElement('div');
+            offerDiv.innerHTML = `
+                <div class="border-t-2 border-gray-200 pt-4 mt-4">
+                    <div class="flex items-center mb-2">
+                        <h2 class="text-xl font-semibold">Offer ${offerCount}</h2>
+                        <input type="text" id="${offerId}_name" class="ml-2 p-1 border rounded-md" placeholder="Rename offer">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div>
+                            <label for="${offerId}_company" class="block text-sm font-medium text-gray-700 mb-1">Company:</label>
+                            <input type="text" id="${offerId}_company" class="w-full p-2 border rounded-md" placeholder="Enter company name">
+                        </div>
+                        <div>
+                            <label for="${offerId}_baseSalary" class="block text-sm font-medium text-gray-700 mb-1">Base Salary (USD/year):</label>
+                            <input type="number" id="${offerId}_baseSalary" class="w-full p-2 border rounded-md" placeholder="Enter base salary">
+                        </div>
+                        <div>
+                            <label for="${offerId}_bonus" class="block text-sm font-medium text-gray-700 mb-1">Annual Bonus:</label>
+                            <div class="flex">
+                                <input type="number" id="${offerId}_bonus" class="w-2/3 p-2 border rounded-l-md" placeholder="Enter bonus">
+                                <select id="${offerId}_bonusType" class="w-1/3 p-2 border border-l-0 rounded-r-md">
+                                    <option value="percent">%</option>
+                                    <option value="amount">$</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="${offerId}_stockPrice" class="block text-sm font-medium text-gray-700 mb-1">Current Stock Price (USD):</label>
+                            <input type="number" id="${offerId}_stockPrice" class="w-full p-2 border rounded-md" placeholder="Enter current stock price">
+                        </div>
+                        <div>
+                            <label for="${offerId}_equityType" class="block text-sm font-medium text-gray-700 mb-1">Equity Type:</label>
+                            <select id="${offerId}_equityType" class="w-full p-2 border rounded-md">
+                                <option value="rsu">Restricted Stock Units (RSUs)</option>
+                                <option value="iso">Incentive Stock Options (ISOs)</option>
+                                <option value="nso">Non-Qualified Stock Options (NSOs)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="${offerId}_equityValue" class="block text-sm font-medium text-gray-700 mb-1">Equity Grant Value (USD):</label>
+                            <input type="number" id="${offerId}_equityValue" class="w-full p-2 border rounded-md" placeholder="Enter equity grant value">
+                        </div>
+                        <div>
+                            <label for="${offerId}_vestingPeriod" class="block text-sm font-medium text-gray-700 mb-1">Vesting Period (years):</label>
+                            <input type="number" id="${offerId}_vestingPeriod" class="w-full p-2 border rounded-md" placeholder="Enter vesting period">
+                        </div>
+                        <div>
+                            <label for="${offerId}_cliffPeriod" class="block text-sm font-medium text-gray-700 mb-1">Cliff Period (months):</label>
+                            <input type="number" id="${offerId}_cliffPeriod" class="w-full p-2 border rounded-md" placeholder="Enter cliff period">
+                        </div>
+                        <div>
+                            <label for="${offerId}_taxRate" class="block text-sm font-medium text-gray-700 mb-1">Estimated Tax Rate (%):</label>
+                            <input type="number" id="${offerId}_taxRate" class="w-full p-2 border rounded-md" placeholder="Enter estimated tax rate">
+                        </div>
+                    </div>
+                </div>
+            `;
+            offerForms.appendChild(offerDiv);
+
+            // Add event listeners for autofill
+            document.getElementById(`${offerId}_company`).addEventListener('change', (e) => autofillCommonInfo(e.target.value));
+            document.getElementById(`${offerId}_stockPrice`).addEventListener('change', (e) => autofillCommonInfo('stockPrice', e.target.value));
+        }
+
+        function autofillCommonInfo(key, value) {
+            if (key === 'stockPrice') {
+                document.querySelectorAll('[id$="_stockPrice"]').forEach(el => {
+                    if (el.value === '') el.value = value;
+                });
+            } else {
+                const companyInputs = document.querySelectorAll('[id$="_company"]');
+                companyInputs.forEach(input => {
+                    if (input.value === key) {
+                        const offerId = input.id.split('_')[0];
+                        document.querySelectorAll(`[id^="${offerId}_"]`).forEach(el => {
+                            const field = el.id.split('_')[1];
+                            const sourceValue = document.getElementById(`offer1_${field}`).value;
+                            if (el.value === '' && sourceValue !== '') el.value = sourceValue;
+                        });
+                    }
+                });
+            }
+        }
+
+        addOfferBtn.addEventListener('click', createOfferForm);
+
+        // Create the first offer form by default
+        createOfferForm();
+
+        calculateBtn.addEventListener('click', () => {
+            const offers = [];
+            for (let i = 1; i <= offerCount; i++) {
+                const offerId = `offer${i}`;
+                const bonusType = document.getElementById(`${offerId}_bonusType`).value;
+                const bonusValue = parseFloat(document.getElementById(`${offerId}_bonus`).value);
+                const baseSalary = parseFloat(document.getElementById(`${offerId}_baseSalary`).value);
+                const bonus = bonusType === 'percent' ? baseSalary * (bonusValue / 100) : bonusValue;
+
+                offers.push({
+                    name: document.getElementById(`${offerId}_name`).value || `Offer ${i}`,
+                    company: document.getElementById(`${offerId}_company`).value,
+                    baseSalary: baseSalary,
+                    bonus: bonus,
+                    stockPrice: parseFloat(document.getElementById(`${offerId}_stockPrice`).value),
+                    equityType: document.getElementById(`${offerId}_equityType`).value,
+                    equityValue: parseFloat(document.getElementById(`${offerId}_equityValue`).value),
+                    vestingPeriod: parseInt(document.getElementById(`${offerId}_vestingPeriod`).value),
+                    cliffPeriod: parseInt(document.getElementById(`${offerId}_cliffPeriod`).value),
+                    taxRate: parseFloat(document.getElementById(`${offerId}_taxRate`).value) / 100
+                });
+            }
+
+            // Calculate and display results
+            displayComparisonTable(offers);
+            displayTotalCompChart(offers);
+
+            displayAnnualBreakdownChart(offers);
+            displayVestingComparisonChart(offers);
+
+            resultsDiv.classList.remove('hidden');
+        });
+
+        function calculateAnnualEquityValue(offer) {
+            return offer.equityValue / offer.vestingPeriod;
+        }
+
+        function displayComparisonTable(offers) {
+            const table = document.createElement('table');
+            table.className = 'table-auto w-full';
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+
+            // Add offer headers
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = '<th class="py-2 px-4 text-left">Metric</th>';
+            offers.forEach(offer => {
+                headerRow.innerHTML += `<th class="py-2 px-4 text-left">${offer.name}</th>`;
+            });
+            thead.appendChild(headerRow);
+
+            // Add comparison rows
+            const metrics = [
+                { name: 'Base Salary', calc: o => o.baseSalary },
+                { name: 'Annual Bonus', calc: o => o.bonus },
+                { name: 'Annual Equity Value', calc: calculateAnnualEquityValue },
+                { name: 'Total Annual Comp', calc: o => o.baseSalary + o.bonus + calculateAnnualEquityValue(o) },
+                { name: '4-Year Total Comp', calc: o => 4 * (o.baseSalary + o.bonus + calculateAnnualEquityValue(o)) }
+            ];
+
+            metrics.forEach(metric => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td class="py-2 px-4">${metric.name}</td>`;
+                offers.forEach(offer => {
+                    row.innerHTML += `<td class="py-2 px-4">$${metric.calc(offer).toFixed(2)}</td>`;
+                });
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            resultsDiv.innerHTML = '';
+            resultsDiv.appendChild(table);
+        }
+
+        function displayTotalCompChart(offers) {
+            const canvas = document.createElement('canvas');
+            resultsDiv.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+
+            // Prepare data for the chart
+            const labels = ['Year 1', 'Year 2', 'Year 3', 'Year 4'];
+            const datasets = offers.map(offer => {
+                const annualEquityValue = calculateAnnualEquityValue(offer);
+                const data = [];
+                let cumulativeValue = 0;
+
+                for (let year = 1; year <= 4; year++) {
+                    const vestedEquity = (annualEquityValue / 4) * year; // Assuming equity vests equally over 4 years
+                    cumulativeValue += offer.baseSalary + offer.bonus + vestedEquity;
+                    data.push(cumulativeValue);
+                }
+
+                return {
+                    label: offer.name,
+                    data: data,
+                    fill: false,
+                    borderColor: getRandomColor(),
+                    tension: 0.1
+                };
+            });
+
+            // Create the chart
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Portfolio Value Over Time'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Value ($)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Year'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Helper function to generate random colors for the chart lines
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function displayAnnualBreakdownChart(offers) {
+            const canvas = document.createElement('canvas');
+            resultsDiv.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+
+            // Prepare data for the chart
+            const labels = ['Year 1', 'Year 2', 'Year 3', 'Year 4'];
+            const datasets = offers.map(offer => {
+                const annualEquityValue = calculateAnnualEquityValue(offer);
+                const data = [];
+                for (let year = 1; year <= 4; year++) {
+                    const vestedEquity = (annualEquityValue / offer.vestingPeriod) * year; // Assuming equity vests equally over the vesting period
+                    const totalComp = offer.baseSalary + offer.bonus + vestedEquity;
+                    data.push(totalComp);
+                }
+                return {
+                    label: offer.name,
+                    data: data,
+                    backgroundColor: getRandomColor(),
+                };
+            });
+
+            // Create the chart
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Annual Breakdown of Portfolio Value'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Value ($)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Year'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        function displayVestingComparisonChart(offers) {
+            const canvas = document.createElement('canvas');
+            resultsDiv.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+
+            // Prepare data for the chart
+            const labels = offers.map(offer => offer.name);
+            const data = offers.map(offer => {
+                const annualEquityValue = calculateAnnualEquityValue(offer);
+                const totalEquityValue = annualEquityValue * offer.vestingPeriod; // Total equity value after full vesting period
+                return totalEquityValue;
+            });
+
+            // Create the chart
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total Vested Equity After Full Vesting Period',
+                        data: data,
+                        backgroundColor: labels.map(() => getRandomColor()),
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        title: {
+                            display: true,
+                            text: 'Vesting Comparison After Full Vesting Period'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Value ($)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Offer'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+
+    </script>
+</body>
+
+</html>

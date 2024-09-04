@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colton Morris</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js"></script>
 </head>
+
 <body>
     <nav>
         <ul>
@@ -28,105 +30,139 @@
             </div>
             <div id="hero-text">
                 <h2 class="text-3xl font-bold mb-4">Welcome</h2>
-                <p>My name is Colton,<br><p>I'm so glad you're here.</p>
+                <p>My name is Colton,<br>
+                <p>I'm so glad you're here.</p>
             </div>
         </section>
 
         <div class="scroll-down-arrow"></div>
 
         <div class="container mx-auto px-4 py-8">
-        <section id="bio" class="mb-12">
-            <h2 class="text-3xl font-bold mb-4">About Me</h2>
-            <h1 class="text-4xl font-bold mb-2">Colton H. Morris</h1>
-            <p class="text-xl">'25 Colorado School of Mines Grad | B.S. Computer Science | GPA: 3.75</p>
-        </section>
+            <section id="bio" class="mb-12">
+                <h2 class="text-3xl font-bold mb-4">About Me</h2>
+                <h1 class="text-4xl font-bold mb-2">Colton H. Morris</h1>
+                <p class="text-xl">'25 Colorado School of Mines Grad | B.S. Computer Science | GPA: 3.75</p>
+            </section>
 
-        <section id="projects" class="mb-12">
-            <h2 class="text-3xl font-bold mb-4">Notable Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold mb-2">Ground Water Depletion</h3>
-                    <p>Interactive web tool demonstrating stream flow depletion due to pumping well</p>
+            <section id="projects" class="mb-12">
+                <h2 class="text-3xl font-bold mb-4">Notable Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center justify-between mb-2">
+                          <h3 class="text-xl font-semibold">Ground Water Depletion</h3>
+                          <a href="https://github.com/avamoonn/Groundwater" target="_blank" class="text-blue-500 hover:text-blue-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </a>
+                        </div>
+                        <p>Interactive web tool demonstrating stream flow depletion due to pumping well</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                          <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">JavaScript</span>
+                          <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full">Jest</span>
+                          <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Selenium</span>
+                        </div>
+                      </div>
+                      <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center justify-between mb-2">
+                          <h3 class="text-xl font-semibold">Stock vs Options Compensation Comparator</h3>
+                          <a href="/calculator.html" class="text-blue-500 hover:text-blue-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </a>
+                        </div>
+                        <p>Interactive web tool demonstrating stream flow depletion due to pumping well</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                          <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">HTML</span>
+                          <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full">CSS</span>
+                          <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">Tailwind</span>
+                        </div>
+                      </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold mb-2">Disaster Detection</h3>
+                        <p>Tweet sentiment analysis for disaster-related tweets (Kaggle Challenge)</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold mb-2">CS Website Redesign</h3>
+                        <p>Led 10-week project, 85% reduction in navigation time</p>
+                    </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold mb-2">Disaster Detection</h3>
-                    <p>Tweet sentiment analysis for disaster-related tweets (Kaggle Challenge)</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold mb-2">CS Website Redesign</h3>
-                    <p>Led 10-week project, 85% reduction in navigation time</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="experience" class="mb-12">
-            <h2 class="text-3xl font-bold mb-4">Experience</h2>
-            <div class="space-y-6">
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold">Parsons Corporation</h3>
-                    <p class="text-gray-600">Machine Learning /Software Development Intern | June 2024 – August 2024</p>
-                    <ul class="list-disc list-inside mt-2">
-                        <li>Developed Spring Boot backend, Angular frontend, MongoDB database for ADS-B data tools</li>
-                        <li>Created Python scripts for antenna data processing</li>
-                        <li>Implemented Docker for database and backend services</li>
-                    </ul>
+            <section id="experience" class="mb-12">
+                <h2 class="text-3xl font-bold mb-4">Experience</h2>
+                <div class="space-y-6">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold">Parsons Corporation</h3>
+                        <p class="text-gray-600">Machine Learning /Software Development Intern | June 2024 – August 2024
+                        </p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>Developed Spring Boot backend, Angular frontend, MongoDB database for ADS-B data tools
+                            </li>
+                            <li>Created Python scripts for antenna data processing</li>
+                            <li>Implemented Docker for database and backend services</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold">X (Formerly Twitter)</h3>
+                        <p class="text-gray-600">Student Developer | April 2024</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>Developed app using unreleased X API and Grok 2.0</li>
+                            <li>Built with Node.js backend and React frontend</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold">X (Formerly Twitter)</h3>
-                    <p class="text-gray-600">Student Developer | April 2024</p>
-                    <ul class="list-disc list-inside mt-2">
-                        <li>Developed app using unreleased X API and Grok 2.0</li>
-                        <li>Built with Node.js backend and React frontend</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="skills" class="mb-12">
-            <h2 class="text-3xl font-bold mb-4">Skills</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white rounded-lg shadow-md p-4">
-                    <h3 class="font-semibold mb-2">Front-End</h3>
-                    <p>UI/UX, Figma, Angular, HTML, CSS/SCSS</p>
+            <section id="skills" class="mb-12">
+                <h2 class="text-3xl font-bold mb-4">Skills</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white rounded-lg shadow-md p-4">
+                        <h3 class="font-semibold mb-2">Front-End</h3>
+                        <p>UI/UX, Figma, Angular, HTML, CSS/SCSS</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4">
+                        <h3 class="font-semibold mb-2">Back-End</h3>
+                        <p>Python, Java, Linux, Git, C, C++, NoSQL, SQLite</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4">
+                        <h3 class="font-semibold mb-2">Mobile</h3>
+                        <p>Unity + C#, Swift, React</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4">
+                        <h3 class="font-semibold mb-2">Machine Learning</h3>
+                        <p>Python, Scikit-learn, Pandas</p>
+                    </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-md p-4">
-                    <h3 class="font-semibold mb-2">Back-End</h3>
-                    <p>Python, Java, Linux, Git, C, C++, NoSQL, SQLite</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-4">
-                    <h3 class="font-semibold mb-2">Mobile</h3>
-                    <p>Unity + C#, Swift, React</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-4">
-                    <h3 class="font-semibold mb-2">Machine Learning</h3>
-                    <p>Python, Scikit-learn, Pandas</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="achievements" class="mb-12">
-            <h2 class="text-3xl font-bold mb-4">Achievements & Leadership</h2>
-            <ul class="list-disc list-inside space-y-2">
-                <li>ACM Vice President</li>
-                <li>Grand Challenges Scholar</li>
-                <li>Computer Science Ambassador</li>
-                <li>Teaching Assistant for Software Engineering</li>
-            </ul>
-        </section>
+            <section id="achievements" class="mb-12">
+                <h2 class="text-3xl font-bold mb-4">Achievements & Leadership</h2>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>ACM Vice President</li>
+                    <li>Grand Challenges Scholar</li>
+                    <li>Computer Science Ambassador</li>
+                    <li>Teaching Assistant for Software Engineering</li>
+                </ul>
+            </section>
         </div>
     </div>
 
     <section class="social-icons">
-        <a href="https://github.com/cmor03" target="_blank" rel="noopener noreferrer" class="icon-link github-icon" aria-label="GitHub Profile"></a>
-        <a href="https://www.linkedin.com/in/coltonmorris25" target="_blank" rel="noopener noreferrer" class="icon-link linkedin-icon" aria-label="LinkedIn Profile"></a>
+        <a href="https://github.com/cmor03" target="_blank" rel="noopener noreferrer" class="icon-link github-icon"
+            aria-label="GitHub Profile"></a>
+        <a href="https://www.linkedin.com/in/coltonmorris25" target="_blank" rel="noopener noreferrer"
+            class="icon-link linkedin-icon" aria-label="LinkedIn Profile"></a>
         <a href="mailto:dev.coltonmorris@gmail.com" class="icon-link email-icon" aria-label="Send Email"></a>
-      </section>
+    </section>
 
-    <di class="footer">    
-    <footer>
-        <p>&copy; 2024 Colton Morris, all rights reserved.</p>
-        <p>Built with ❤️ and open source software.</p>
-    </footer>
-    </div>
+    <di class="footer">
+        <footer>
+            <p>&copy; 2024 Colton Morris, all rights reserved.</p>
+            <p>Built with ❤️ and open source software.</p>
+        </footer>
+        </div>
 </body>
+
 </html>
