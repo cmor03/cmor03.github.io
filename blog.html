@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog • Colton Morris</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#0f172a">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .blog-container { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+    .post-item { display: flex; align-items: baseline; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid rgba(15,23,42,0.08); }
+    .post-item a { text-decoration: none; color: var(--text-color); font-weight: 600; letter-spacing: -0.01em; }
+    .post-item a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .post-date { color: #64748b; font-variant-numeric: tabular-nums; }
+    .post-meta-row { display: flex; align-items: center; gap: 8px; }
+    .post-read { color: #64748b; }
+    .post-sep { opacity: 0.5; }
+    .dark-mode .post-item { border-bottom-color: rgba(255,255,255,0.08); }
+    .dark-mode .post-date { color: #cbd5e1; }
+    .dark-mode .post-read { color: #cbd5e1; }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/index.html#home" class="brand">CM</a>
+      <ul class="nav-links">
+        <li><a href="/index.html">About</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/books.html">Books</a></li>
+      </ul>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main class="blog-container reveal" style="padding-top: calc(2rem + 84px);">
+    <h1 class="page-title">Blog</h1>
+    <p class="lead">Writing on projects, learning, and notes worth keeping.</p>
+    <div id="postList" class="mt-6"></div>
+  </main>
+
+  <script defer src="/script.js"></script>
+  <script>
+    async function loadPosts() {
+      try {
+        const res = await fetch('/blog/posts.json', { cache: 'no-store' });
+        const posts = (await res.json()).sort((a,b) => new Date(b.date) - new Date(a.date));
+        const list = document.getElementById('postList');
+        list.innerHTML = posts.map(p => {
+          const readStr = p.readTime ? `${p.readTime.replace('min','minute').trim()} read` : '';
+          const dateStr = new Date(p.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' });
+          return `
+          <div class="post-item">
+            <a href="/blog/post.html?slug=${encodeURIComponent(p.slug)}">${p.title}</a>
+            <div class="post-meta-row">
+              <time class="post-date">${dateStr}</time>
+              ${readStr ? `<span class="post-sep">•</span><span class="post-read">${readStr}</span>` : ``}
+            </div>
+          </div>
+        `;
+        }).join('');
+      } catch (e) {
+        document.getElementById('postList').innerHTML = '<p class="muted">Unable to load posts.</p>';
+        console.error(e);
+      }
+    }
+    loadPosts();
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+</body>
+</html>

@@ -5,75 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colton Morris</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-</head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0f172a">
+    <script defer src="script.js"></script>
+  </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#home"><i class="fas fa-home"></i></a></li>
-        </ul>
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="#home" class="brand">CM</a>
+            <ul class="nav-links">
+                <li><a href="/index.html">About</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/books.html">Books</a></li>
+            </ul>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </nav>
 
-    <div id="content">
-        <section id="hero">
-            <div id="hero-image">
-                <img src="/page_content/main.png" alt="Hero Image">
-            </div>
-            <div id="hero-text">
-                <h2 class="text-3xl font-bold mb-4">Welcome</h2>
-                <p>My name is Colton,<br>I'm so glad you're here.</p>
-            </div>
-        </section>
+    <section id="hero" class="hero">
+      <div class="hero-bg">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-gradient" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-fade" aria-hidden="true"></div>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1 class="hero-title">Welcome</h1>
+          <p class="hero-subtitle"><span class="muted">I'm Colton —</span> <span id="typed-roles" class="gradient-text"></span><span class="typed-cursor" aria-hidden="true">|</span></p>
+          <p class="hero-blurb">Class of 2025 @ Mines. Building delightful, robust software.</p>
+          <div class="hero-ctas">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="/resume.html" class="btn btn-ghost">Resume</a>
+          </div>
+        </div>
+        <div class="hero-portrait" aria-hidden="true">
+          <div class="portrait-ring">
+            <img src="page_content/main.png" alt="Colton Morris portrait">
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <div id="content">
+        
         <div class="scroll-down-arrow"></div>
 
         <div class="container mx-auto px-4 py-8">
-            <section id="bio" class="mb-12">
-                <h2 class="text-3xl font-bold mb-4">About Me</h2>
-                <h1 class="text-4xl font-bold mb-2">Colton H. Morris</h1>
-                <p class="text-xl">Class of 2025, Colorado School of Mines | B.S. Computer Science | GPA: 3.7</p>
-                <p><strong>Datava C-MAPP Scholar</strong> (scholarship awarded to top 80 out of 300 students) <a href="https://mapp.mines.edu/scholarships.html" target="_blank" class="text-blue-500 underline hover:text-blue-700">learn more here</a></p>
+            <section id="bio" class="mb-16 reveal">
+                <h2 class="section-title">About Me</h2>
+                <h1 class="page-title">Colton H. Morris</h1>
+                <p class="lead">Class of 2025, Colorado School of Mines | B.S. Computer Science | GPA: 3.7</p>
+                <p><strong>Datava C-MAPP Scholar</strong> (scholarship awarded to top 80 out of 300 students) <a href="https://mapp.mines.edu/scholarships.html" target="_blank" class="link">learn more here</a></p>
             </section>
 
-            <section id="experience" class="mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-center">Experience</h2>
+            <section id="experience" class="mb-20 reveal">
+                <h2 class="section-title text-center">Experience</h2>
                 <div class="space-y-6">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-xl font-semibold flex items-center justify-between">
-                            <span>Parsons Corporation</span>
-                            <div class="flex items-center">
-                                <a href="https://www.parsons.com/" target="_blank" rel="noopener noreferrer" class="icon-link ml-2">
+                    <div class="card">
+                        <h3 class="card-title">
+                            <span>Whitney Marsh Foundation</span>
+                            <div class="card-actions">
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">WordPress</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200">Elementor</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">HTML</span>
+                                <a href="https://whitneymarsh.org" target="_blank" rel="noopener noreferrer" class="icon-link ml-2" aria-label="Whitney Marsh Foundation website">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
-                                <!-- <a href="https://github.com/cmor03/parsons-project" target="_blank" rel="noopener noreferrer" class="icon-link ml-2">
-                                    <i class="fab fa-github"></i>
-                                </a> -->
                             </div>
                         </h3>
-                        <p class="text-gray-600">Software Developer | August 2024 – Present</p>
+                        <p class="muted">Vice President & CTO | November 2024 – Present</p>
                         <ul class="list-disc list-inside mt-2">
-                            <li>Built and deployed containerized Angular web apps using Docker and Kubernetes, configuring ingress for secure routing and reliable rollout.</li>
-                            <li>Developed frontend features for desktop and mobile web using React, integrating with backend APIs and ensuring performance, accessibility, and cross-browser support.</li>
-                            <li>Automated CI/CD workflows in Jenkins to run tests, lint code, and deploy React builds through Artifactory, improving code quality and release speed.</li>
+                            <li>Lead the foundation’s digital footprint end‑to‑end — web platform, content, and analytics — to expand reach and deepen community engagement.</li>
+                            <li>Co-manage a 15+ person cross‑functional team alongside the Founder and President, aligning roadmap, brand, and operations to measurable outcomes.</li>
+                            <li>Modernized the site with WordPress + Elementor and clean HTML components, improving performance, accessibility, and publishing velocity.</li>
                         </ul>
                     </div>
-                <div class="space-y-6">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-xl font-semibold flex items-center justify-between">
+                    <div class="card">
+                        <h3 class="card-title">
                             <span>Parsons Corporation</span>
-                            <div class="flex items-center">
-                                <a href="https://www.parsons.com/" target="_blank" rel="noopener noreferrer" class="icon-link ml-2">
+                            <div class="card-actions">
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-red-50 text-red-700 border border-red-200">Angular</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-sky-50 text-sky-700 border border-sky-200">Docker</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">Kubernetes</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">CI/CD</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-stone-100 text-stone-700 border border-stone-200">Jenkins</span>
+                                <a href="https://www.parsons.com/" target="_blank" rel="noopener noreferrer" class="icon-link ml-2" aria-label="Parsons website">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
-                                <!-- <a href="https://github.com/cmor03/parsons-project" target="_blank" rel="noopener noreferrer" class="icon-link ml-2">
-                                    <i class="fab fa-github"></i>
-                                </a> -->
+                                <!-- <a href="https://github.com/cmor03/parsons-project" target="_blank" rel="noopener noreferrer" class="icon-link ml-2"><i class="fab fa-github"></i></a> -->
                             </div>
                         </h3>
-                        <p class="text-gray-600">Software Development Intern | June 2024 – August 2024</p>
+                        <p class="muted">Software Developer | August 2024 – Present</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>Built and deployed containerized Angular web apps using Docker and Kubernetes, configuring ingress for secure routing and reliable rollout.</li>
+                            <li>Developed frontend features for desktop and mobile web using Angular, integrating with backend APIs and ensuring performance, accessibility, and cross-browser support.</li>
+                            <li>Automated CI/CD workflows in Jenkins to run tests, lint code, and deploy Angular builds through Artifactory, improving code quality and release speed.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">
+                            <span>Parsons Corporation</span>
+                            <div class="card-actions">
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-green-50 text-green-700 border border-green-200">Spring Boot</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-red-50 text-red-700 border border-red-200">Angular</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">MongoDB</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-sky-50 text-sky-700 border border-sky-200">Docker</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">Python</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-violet-50 text-violet-700 border border-violet-200">GPT-4o</span>
+                                <a href="https://www.parsons.com/" target="_blank" rel="noopener noreferrer" class="icon-link ml-2" aria-label="Parsons website">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <!-- <a href="https://github.com/cmor03/parsons-project" target="_blank" rel="noopener noreferrer" class="icon-link ml-2"><i class="fab fa-github"></i></a> -->
+                            </div>
+                        </h3>
+                        <p class="muted">Software Development Intern | June 2024 – August 2024</p>
                         <ul class="list-disc list-inside mt-2">
                             <li>Developed a Spring Boot backend with a feature-rich Angular frontend and MongoDB database for ADS-B data tools.</li>
                             <li>Created Python scripts for antenna data processing and Dockerized services for deployment.</li>
@@ -81,33 +133,69 @@
                             <li>Project repo not available.</li>
                         </ul>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-xl font-semibold flex items-center justify-between">
-                            <span>X (Formerly Twitter)</span>
-                            <div class="flex items-center">
-                                <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="icon-link ml-2">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                                <a href="https://github.com/tyler-keller/x-dev-challenge" target="_blank" rel="noopener noreferrer" class="icon-link ml-2">
-                                    <i class="fab fa-github"></i>
-                                </a>
+                </div>
+            </section>
+
+            <section id="hackathons" class="mb-20 reveal">
+                <h2 class="section-title text-center">Hackathons</h2>
+                <div class="space-y-6">
+                    <div class="card">
+                        <h3 class="card-title">
+                            <span>X Developer Hackathon</span>
+                            <div class="card-actions">
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">HTML</span>
                             </div>
                         </h3>
-                        <p class="text-gray-600">Student Developer | April 2024</p>
+                        <p class="muted">February 2025</p>
                         <ul class="list-disc list-inside mt-2">
-                            <li>Invited to X's first Developer Challenge.</li>
-                            <li>Developed an app using X's unreleased API and Grok 2.0, processing thousands of tweets to provide insights on user-input topics.</li>
-                            <li>Built with Node.js backend and React frontend.</li>
+                            <li>Built a lightweight HTML app powered by the unreleased Grok 3.0 API to aggregate state-level sentiment for any user-entered topic.</li>
+                            <li>Produced real-time, map-friendly summaries with prompt templates and rate-limit aware polling for resilient UX.</li>
+                            <li>Delivered a shareable dashboard that highlights consensus, outliers, and trending states at a glance.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">
+                            <span>BlasterHacks — Colorado School of Mines</span>
+                            <div class="card-actions">
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">2nd Place</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">Swift</span>
+                            </div>
+                        </h3>
+                        <p class="muted">March 2024</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>Created an iOS app that gamifies glucose tracking with an Egyptian-ant theme to make adherence playful and habit-forming.</li>
+                            <li>Designed streaks, quests, and haptic feedback loops to reinforce healthy routines and reduce logging friction.</li>
+                            <li>Polished with a clean UI, accessible visuals, and offline-first data handling for reliability.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">
+                            <span>XAI Hackathon</span>
+                            <div class="card-actions">
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">Honorable Mention</span>
+                                <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">Chrome Ext.</span>
+                            </div>
+                        </h3>
+                        <p class="muted">November 2024</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>Built a Chrome extension that reconstructs any page into a runnable Replit project so users can instantly remix and deploy.</li>
+                            <li>Automated asset extraction, dependency inference, and scaffolding to produce a clean, minimal repo on demand.</li>
+                            <li>Streamlined the handoff from browsing to building, cutting time-to-first-edit from minutes to seconds.</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <section id="projects" class="mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-center">Projects</h2>
+            <section id="projects" class="mb-20 reveal">
+                <h2 class="section-title text-center">Projects</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Project 1 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300 relative">
+                    <div class="card project">
+                        <a href="https://github.com/avamoonn/Groundwater" target="_blank" class="github-float" aria-label="Ground Water Depletion GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
                         <h3 class="text-xl font-semibold mb-2 flex items-center">Ground Water Depletion</h3>
                         <p class="mb-4">
                             A web-based tool visualizing the environmental impact of groundwater extraction on stream flow dynamics, providing users with interactive controls and real-time feedback.
@@ -117,64 +205,61 @@
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg" alt="Selenium" class="h-8 w-8">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" alt="Jest" class="h-8 w-8">
                         </div>
-                        <a href="https://github.com/avamoonn/Groundwater" target="_blank" class="icon-link">
-                            <i class="fab fa-github text-3xl"></i>
-                        </a>
                     </div>
 
                     <!-- Project 4 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="card project">
+                        <a href="https://github.com/cmor03/ClueGame" target="_blank" class="github-float" aria-label="Clue Game GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
                         <h3 class="text-xl font-semibold mb-2 flex items-center">Clue Game</h3>
                         <p class="mb-4">A digital adaptation of the classic Clue board game, developed using Java to replicate gameplay mechanics and provide an interactive user experience.</p>
                         <div class="flex space-x-4 mb-4">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="h-8 w-8">
                         </div>
-                        <a href="https://github.com/cmor03/ClueGame" target="_blank" class="icon-link">
-                            <i class="fab fa-github text-3xl"></i>
-                        </a>
                     </div>
 
                     <!-- Project 5 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="card project">
+                        <a href="https://github.com/tyler-keller/data-driven-diabetes" target="_blank" class="github-float" aria-label="Data-Driven Diabetes GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
                         <h3 class="text-xl font-semibold mb-2 flex items-center">Data-Driven Diabetes</h3>
                         <p class="mb-4">A project focused on visualizing diabetes data to provide insights and gamify health using the Dexcom API.</p>
                         <div class="flex space-x-4 mb-4">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="h-8 w-8">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" alt="Swift" class="h-8 w-8">
                         </div>
-                        <a href="https://github.com/tyler-keller/data-driven-diabetes" target="_blank" class="icon-link">
-                            <i class="fab fa-github text-3xl"></i>
-                        </a>
                     </div>
 
                     <!-- Project 6 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="card project">
+                        <a href="https://github.com/cmor03/lets-go-frontend" target="_blank" class="github-float" aria-label="Let's Go GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
                         <h3 class="text-xl font-semibold mb-2 flex items-center">Let's Go</h3>
                         <p class="mb-4">A React Native mobile application that streamlines group event planning using Firebase, enabling users to collaboratively decide on plans in real time.</p>
                         <div class="flex space-x-4 mb-4">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Native" class="h-8 w-8">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" class="h-8 w-8">
                         </div>
-                        <a href="https://github.com/cmor03/lets-go-frontend" target="_blank" class="icon-link">
-                            <i class="fab fa-github text-3xl"></i>
-                        </a>
                     </div>
 
                     <!-- Project 2 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="card project">
                         <h3 class="text-xl font-semibold mb-2 flex items-center">Disaster Detection</h3>
                         <p class="mb-4">A machine learning model leveraging natural language processing to analyze disaster-related tweets, identifying key sentiment trends to aid real-time disaster response.</p>
                         <div class="flex space-x-4 mb-4">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="h-8 w-8">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="PCA" class="h-8 w-8">
                         </div>
-                        <!-- <a href="https://github.com/cmor03/disaster-detection" target="_blank" class="icon-link">
-                            <i class="fab fa-github text-3xl"></i>
-                        </a> -->
                     </div>
 
                     <!-- Project 3 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="card project">
+                        <a href="#" class="github-float" aria-label="Neural Net Parking GitHub" onclick="return false;">
+                            <i class="fab fa-github"></i>
+                        </a>
                         <h3 class="text-xl font-semibold mb-2 flex items-center">Neural Net Parking</h3>
                         <p class="mb-4">
                             A Unity-based simulation utilizing ML-agents to train and evaluate the performance of autonomous vehicles in safely navigating to parking spots.
@@ -184,34 +269,9 @@
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="h-8 w-8">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" class="h-8 w-8">
                         </div>
-                        <!-- <a href="https://github.com/cmor03/unity-simulation" target="_blank" class="icon-link">
-                            <i class="fab fa-github text-3xl"></i>
-                        </a> -->
                     </div>
                      
 
-                </div>
-            </section>
-
-            <section id="skills" class="mb-12">
-                <h2 class="text-3xl font-bold mb-4">Skills</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-white rounded-lg shadow-md p-4">
-                        <h3 class="font-semibold mb-2">Front-End</h3>
-                        <p>UI/UX, Figma, Angular, HTML, CSS/SCSS, React</p>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-4">
-                        <h3 class="font-semibold mb-2">Back-End</h3>
-                        <p>Python, Java, Golang, Node.js, Docker, REST APIs</p>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-4">
-                        <h3 class="font-semibold mb-2">Database</h3>
-                        <p>MongoDB, MySQL, PostgreSQL, NoSQL, SQLite</p>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-4">
-                        <h3 class="font-semibold mb-2">Machine Learning</h3>
-                        <p>Python, Scikit-learn, TensorFlow, PyTorch</p>
-                    </div>
                 </div>
             </section>
 
