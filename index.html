@@ -11,12 +11,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <meta name="theme-color" content="#0f172a">
+    <script>(function(){try{var s=localStorage.getItem('dark-mode');var p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='true'||(s===null&&p)){document.documentElement.classList.add('dark-mode');}}catch(e){}})();</script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 120%22%3E%3Ctext y=%2296%22 font-size=%2296%22%3E%F0%9F%A6%A7%3C/text%3E%3C/svg%3E">
     <script defer src="script.js"></script>
   </head>
-<body>
+<body class="home">
     <nav class="site-nav">
         <div class="nav-inner">
             <a href="#home" class="brand">CM</a>
+            <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
             <ul class="nav-links">
                 <li><a href="/index.html">About</a></li>
                 <li><a href="/blog.html">Blog</a></li>
@@ -209,7 +212,7 @@
 
                     <!-- Project 4 -->
                     <div class="card project">
-                        <a href="https://github.com/cmor03/ClueGame" target="_blank" class="github-float" aria-label="Clue Game GitHub">
+                        <a href="https://github.com/cmor03/ClueGame" target="_blank" aria-label="Clue Game GitHub">
                             <i class="fab fa-github"></i>
                         </a>
                         <h3 class="text-xl font-semibold mb-2 flex items-center">Clue Game</h3>
@@ -221,7 +224,7 @@
 
                     <!-- Project 5 -->
                     <div class="card project">
-                        <a href="https://github.com/tyler-keller/data-driven-diabetes" target="_blank" class="github-float" aria-label="Data-Driven Diabetes GitHub">
+                        <a href="https://github.com/tyler-keller/data-driven-diabetes" target="_blank" aria-label="Data-Driven Diabetes GitHub">
                             <i class="fab fa-github"></i>
                         </a>
                         <h3 class="text-xl font-semibold mb-2 flex items-center">Data-Driven Diabetes</h3>
@@ -257,7 +260,7 @@
 
                     <!-- Project 3 -->
                     <div class="card project">
-                        <a href="#" class="github-float" aria-label="Neural Net Parking GitHub" onclick="return false;">
+                        <a href="#" aria-label="Neural Net Parking GitHub" onclick="return false;">
                             <i class="fab fa-github"></i>
                         </a>
                         <h3 class="text-xl font-semibold mb-2 flex items-center">Neural Net Parking</h3>

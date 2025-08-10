@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books | Colton Morris</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#0f172a" />
+  <script>(function(){try{var s=localStorage.getItem('dark-mode');var p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='true'||(s===null&&p)){document.documentElement.classList.add('dark-mode');}}catch(e){}})();</script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Ctext y=%2796%27 font-size=%2796%27%3E%F0%9F%A6%A7%3C/text%3E%3C/svg%3E">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="#home" class="brand">CM</a>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+      <ul class="nav-links">
+        <li><a href="/index.html">About</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/books.html">Books</a></li>
+      </ul>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div id="content" style="padding-top: 96px;">
+    <section class="mb-16 reveal">
+      <h2 class="section-title text-center">Books</h2>
+      <p class="lead text-center">Books I have read, with finish dates and how long each took.</p>
+    </section>
+
+    <section id="books" class="mb-20 reveal">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Book 1.5 -->
+        <article class="card book-card" data-start="2025-01-21" data-finish="2025-01-28">
+          <img class="w-full h-52 object-cover rounded-md mb-3" src="https://covers.openlibrary.org/b/id/8226191-L.jpg" alt="The Glass Castle cover" />
+          <h3 class="text-lg font-semibold mb-1">The Glass Castle</h3>
+          <p class="muted mb-3">Jeannette Walls</p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="stat p-3"><span class="muted block">Finished</span><span class="js-finished font-medium"></span></div>
+            <div class="stat p-3"><span class="muted block">Days</span><span class="js-days font-medium"></span></div>
+          </div>
+        </article>
+        <!-- Book 1.6 -->
+        <article class="card book-card" data-start="2025-01-29" data-finish="2025-02-05">
+          <img class="w-full h-52 object-cover rounded-md mb-3" src="https://covers.openlibrary.org/b/id/8399251-L.jpg" alt="The Four cover" />
+          <h3 class="text-lg font-semibold mb-1">The Four</h3>
+          <p class="muted mb-3">Scott Galloway</p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="stat p-3"><span class="muted block">Finished</span><span class="js-finished font-medium"></span></div>
+            <div class="stat p-3"><span class="muted block">Days</span><span class="js-days font-medium"></span></div>
+          </div>
+        </article>
+
+        <!-- Book 3 -->
+        <article class="card book-card" data-start="2025-01-13" data-finish="2025-01-20">
+        <img class="w-full h-52 object-cover rounded-md mb-3" src="https://covers.openlibrary.org/b/id/8376916-L.jpg" alt="Deep Work cover" />
+        <h3 class="text-lg font-semibold mb-1">Deep Work</h3>
+        <p class="muted mb-3">Cal Newport</p>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="stat p-3"><span class="muted block">Finished</span><span class="js-finished font-medium"></span></div>
+            <div class="stat p-3"><span class="muted block">Days</span><span class="js-days font-medium"></span></div>
+        </div>
+        </article>
+        <!-- Prediction Machines -->
+        <article class="card book-card" data-start="2025-02-06" data-finish="2025-02-13">
+        <img class="w-full h-52 object-cover rounded-md mb-3" src="https://covers.openlibrary.org/b/id/9783272-L.jpg" alt="Prediction Machines cover" />
+        <h3 class="text-lg font-semibold mb-1">Prediction Machines</h3>
+        <p class="muted mb-3">Ajay Agrawal, Joshua Gans, Avi Goldfarb</p>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="stat p-3"><span class="muted block">Finished</span><span class="js-finished font-medium"></span></div>
+            <div class="stat p-3"><span class="muted block">Days</span><span class="js-days font-medium"></span></div>
+        </div>
+        </article>
+
+        <!-- Information Doesn't Want to Be Free -->
+        <article class="card book-card" data-start="2025-02-14" data-finish="2025-02-20">
+        <img class="w-full h-52 object-cover rounded-md mb-3" src="https://covers.openlibrary.org/b/id/8231996-L.jpg" alt="Information Doesn't Want to Be Free cover" />
+        <h3 class="text-lg font-semibold mb-1">Information Doesn't Want to Be Free</h3>
+        <p class="muted mb-3">Cory Doctorow</p>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="stat p-3"><span class="muted block">Finished</span><span class="js-finished font-medium"></span></div>
+            <div class="stat p-3"><span class="muted block">Days</span><span class="js-days font-medium"></span></div>
+        </div>
+        </article>
+
+        <!-- Flow -->
+        <article class="card book-card" data-start="2025-02-21" data-finish="2025-03-01">
+        <img class="w-full h-52 object-cover rounded-md mb-3" src="https://covers.openlibrary.org/b/id/8228691-L.jpg" alt="Flow cover" />
+        <h3 class="text-lg font-semibold mb-1">Flow</h3>
+        <p class="muted mb-3">Mihaly Csikszentmihalyi</p>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="stat p-3"><span class="muted block">Finished</span><span class="js-finished font-medium"></span></div>
+            <div class="stat p-3"><span class="muted block">Days</span><span class="js-days font-medium"></span></div>
+        </div>
+        </article>
+
+        <!-- The Giver -->
+        <article class="card book-card" data-start="2025-03-02" data-finish="2025-03-07">
+        <img class="w-full h-52 object-cover rounded-md mb-3" src="https://covers.openlibrary.org/b/id/8225631-L.jpg" alt="The Giver cover" />
+        <h3 class="text-lg font-semibold mb-1">The Giver</h3>
+        <p class="muted mb-3">Lois Lowry</p>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="stat p-3"><span class="muted block">Finished</span><span class="js-finished font-medium"></span></div>
+            <div class="stat p-3"><span class="muted block">Days</span><span class="js-days font-medium"></span></div>
+        </div>
+        </article>
+
+        <!-- The Sun Also Rises -->
+        <article class="card book-card" data-start="2025-03-08" data-finish="2025-03-15">
+        <img class="w-full h-52 object-cover rounded-md mb-3" src="https://covers.openlibrary.org/b/id/8226191-L.jpg" alt="The Sun Also Rises cover" />
+        <h3 class="text-lg font-semibold mb-1">The Sun Also Rises</h3>
+        <p class="muted mb-3">Ernest Hemingway</p>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="stat p-3"><span class="muted block">Finished</span><span class="js-finished font-medium"></span></div>
+            <div class="stat p-3"><span class="muted block">Days</span><span class="js-days font-medium"></span></div>
+        </div>
+        </article>
+
+        <!-- Grokking Algorithms -->
+        <article class="card book-card" data-start="2025-03-16" data-finish="2025-03-25">
+        <img class="w-full h-52 object-cover rounded-md mb-3" src="https://covers.openlibrary.org/b/id/8231997-L.jpg" alt="Grokking Algorithms cover" />
+        <h3 class="text-lg font-semibold mb-1">Grokking Algorithms</h3>
+        <p class="muted mb-3">Aditya Bhargava</p>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="stat p-3"><span class="muted block">Finished</span><span class="js-finished font-medium"></span></div>
+            <div class="stat p-3"><span class="muted block">Days</span><span class="js-days font-medium"></span></div>
+        </div>
+        </article>
+        
+      </div>
+    </section>
+  </div>
+
+  <section class="social-icons">
+    <a href="https://github.com/cmor03" target="_blank" rel="noopener noreferrer" class="icon-link github-icon" aria-label="GitHub Profile"></a>
+    <a href="https://www.linkedin.com/in/coltonmorris25" target="_blank" rel="noopener noreferrer" class="icon-link linkedin-icon" aria-label="LinkedIn Profile"></a>
+    <a href="mailto:dev.coltonmorris@gmail.com" class="icon-link email-icon" aria-label="Send Email"></a>
+  </section>
+
+  <div class="footer">
+    <footer>
+      <p>&copy; 2025 Colton Morris, all rights reserved.</p>
+      <p>Built with ❤️ and open-source software.</p>
+    </footer>
+  </div>
+</body>
+</html> 

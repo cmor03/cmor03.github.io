@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post • Colton Morris</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#0f172a">
+  <script>(function(){try{var s=localStorage.getItem('dark-mode');var p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='true'||(s===null&&p)){document.documentElement.classList.add('dark-mode');}}catch(e){}})();</script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Ctext y=%2796%27 font-size=%2796%27%3E%F0%9F%A6%A7%3C/text%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .post-container { max-width: 850px; margin: 0 auto; padding: 2rem 1rem; }
+    .post-header { margin-bottom: 1.25rem; }
+    .post-title { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; }
+    .post-meta { color: #64748b; display: flex; align-items: center; gap: 8px; }
+    .dark-mode .post-meta { color: #cbd5e1; }
+    .post-content { line-height: 1.8; font-size: 1.0625rem; }
+    .post-content h2 { font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    .post-content pre { background: rgba(15,23,42,0.04); padding: 1rem; border-radius: 12px; overflow-x: auto; }
+    .dark-mode .post-content pre { background: rgba(255,255,255,0.06); }
+    .post-content code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.95em; }
+    .post-content a { color: #0ea5e9; text-decoration: underline; text-underline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/index.html#home" class="brand">CM</a>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+      <ul class="nav-links">
+        <li><a href="/index.html">About</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/books.html">Books</a></li>
+     </ul>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main class="post-container reveal">
+    <header class="post-header">
+      <h1 id="postTitle" class="post-title">Loading…</h1>
+      <p id="postDate" class="post-meta"></p>
+    </header>
+    <article id="postContent" class="post-content"></article>
+  </main>
+
+  <script defer src="/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    async function loadPost() {
+      const params = new URLSearchParams(location.search);
+      const slug = params.get('slug');
+      if (!slug) {
+        document.getElementById('postTitle').textContent = 'Post not found';
+        return;
+      }
+      try {
+        const postsRes = await fetch('/blog/posts.json', { cache: 'no-store' });
+        const posts = await postsRes.json();
+        const meta = posts.find(p => p.slug === slug);
+        if (meta) {
+          document.title = meta.title + ' • Colton Morris';
+          document.getElementById('postTitle').textContent = meta.title;
+          const readStr = meta.readTime ? `${meta.readTime.replace('min','minute').trim()} read` : '';
+          const dateStr = new Date(meta.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' });
+          document.getElementById('postDate').innerHTML = `<time>${dateStr}</time>${readStr ? ` <span class="post-sep">•</span> <span class="post-read">${readStr}</span>` : ``}`;
+        }
+        const res = await fetch(`/blog/posts/${encodeURIComponent(slug)}.md`, { cache: 'no-store' });
+        const md = await res.text();
+        marked.setOptions({ breaks: true });
+        document.getElementById('postContent').innerHTML = marked.parse(md);
+      } catch (e) {
+        document.getElementById('postTitle').textContent = 'Failed to load post';
+        console.error(e);
+      }
+    }
+    loadPost();
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+</body>
+</html> 

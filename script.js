@@ -15,12 +15,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   const stored = localStorage.getItem('dark-mode');
   const shouldEnableDark = stored === 'true' || (stored === null && prefersDark);
-  if (shouldEnableDark) document.body.classList.add('dark-mode');
+  if (shouldEnableDark) {
+    document.body.classList.add('dark-mode');
+    document.documentElement.classList.add('dark-mode');
+  }
   updateThemeIcon();
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
+      document.documentElement.classList.toggle('dark-mode');
       localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
       updateThemeIcon();
     });
@@ -38,6 +42,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.remove('no-nav-anim');
   } else {
     document.body.classList.add('no-nav-anim');
+  }
+
+  // Mark homepage for spacing logic on other pages
+  const isHomeForSpacing = location.pathname === '/' || location.pathname === '/index.html';
+  if (isHomeForSpacing) {
+    document.body.classList.add('home');
+  } else {
+    document.body.classList.remove('home');
   }
 
   // Reveal on scroll
@@ -129,7 +141,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Enhanced hero: particles and parallax (respects reduced motion)
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const canvas = document.getElementById('hero-canvas');
-  if (canvas && !prefersReduced) {
+  const isSmall = window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
+  if (canvas && !prefersReduced && !isSmall) {
     const ctx = canvas.getContext('2d');
     let particles = [];
     let width = 0, height = 0;
@@ -211,10 +224,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Floating glass nav follows cursor subtly
   const siteNav = document.querySelector('.site-nav');
   const navInner = document.querySelector('.nav-inner');
+  const navLinks = document.querySelector('.nav-links');
+  const menuToggle = document.getElementById('menuToggle');
   if (siteNav && navInner) {
     let rafId = 0;
     let tx = 0, ty = 0;
     let mx = 0.5, my = 0.5;
+    const smallNav = window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
 
     function apply() {
       navInner.style.setProperty('--tx', `${tx.toFixed(2)}px`);
@@ -223,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
       navInner.style.setProperty('--my', `${my * 100}%`);
     }
 
-    window.addEventListener('mousemove', (e) => {
+    if (!smallNav) window.addEventListener('mousemove', (e) => {
       const rect = siteNav.getBoundingClientRect();
       const nx = (e.clientX - rect.left) / rect.width;
       const ny = Math.max(0, Math.min(1, (e.clientY - rect.top) / Math.max(1, rect.height)));
@@ -243,6 +259,20 @@ document.addEventListener('DOMContentLoaded', function() {
       cancelAnimationFrame(rafId);
       tx = 0; ty = 0; mx = 0.5; my = 0.5; apply();
     }, { capture: false });
+  }
+
+  // Mobile menu toggle
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach((a) => a.addEventListener('click', (e) => {
+      navLinks.classList.remove('open');
+    }));
+    document.addEventListener('click', (e) => {
+      if (!navInner.contains(e.target)) navLinks.classList.remove('open');
+    });
   }
 });
 
