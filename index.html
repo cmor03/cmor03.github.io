@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colton Morris</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 120%22%3E%3Ctext y=%2296%22 font-size=%2296%22%3E%F0%9F%A6%A7%3C/text%3E%3C/svg%3E">
+    <script defer src="script.js"></script>
+  </head>
+<body class="home">
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="#home" class="brand">CM</a>
+            <ul class="nav-links">
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/books.html">Books</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+      <div class="hero-bg">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-gradient" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1 class="hero-title">Welcome</h1>
+          <p class="hero-subtitle">Software developer.</p>
+          <p class="hero-blurb">Class of 2025 @ Mines. Building delightful, robust software.</p>
+          <div class="hero-ctas">
+            <a href="/about.html#projects" class="btn btn-primary">View Projects</a>
+            <a href="/blog.html" class="btn btn-ghost">Blog</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="content">
+
+        <div class="container mx-auto px-4 py-8">
+            <section id="intro" class="mb-16">
+                <h2 class="section-title">About Me</h2>
+                <p class="lead">I’m Colton — I build things that make the world better. Currently working at Parsons Corporation; I like clean interfaces, strong fundamentals, and shipping things that work.</p>
+            </section>
+
+            <section id="explore" class="mb-20">
+                <h2 class="section-title text-center">Explore</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <a href="/about.html" class="card">
+                        <h3 class="text-xl font-semibold mb-2">About</h3>
+                        <p>Resume, experience, projects, and achievements.</p>
+                    </a>
+                    <a href="/books.html" class="card">
+                        <h3 class="text-xl font-semibold mb-2">Books</h3>
+                        <p>Reading list with finish dates and time-to-finish.</p>
+                    </a>
+                    <a href="/blog.html" class="card">
+                        <h3 class="text-xl font-semibold mb-2">Blog</h3>
+                        <p>Notes on projects, learning, and things worth keeping.</p>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+    <section class="social-icons">
+        <a href="https://github.com/cmor03" target="_blank" rel="noopener noreferrer" class="icon-link github-icon" aria-label="GitHub Profile"></a>
+        <a href="https://www.linkedin.com/in/coltonmorris25" target="_blank" rel="noopener noreferrer" class="icon-link linkedin-icon" aria-label="LinkedIn Profile"></a>
+        <a href="mailto:dev.coltonmorris@gmail.com" class="icon-link email-icon" aria-label="Send Email"></a>
+    </section>
+
+    <div class="footer">
+        <footer>
+            <p>&copy; 2025 Colton Morris, all rights reserved.</p>
+            <p>Built with ❤️ and open-source software.</p>
+        </footer>
+    </div>
+</body>
+</html>

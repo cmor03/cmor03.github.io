@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "hello-world",
+    "title": "Hello, World",
+    "date": "2025-01-15",
+    "readTime": "1 min"
+  },
+  {
+    "slug": "mines-notes-1",
+    "title": "Building Useful Tools",
+    "date": "2025-02-01",
+    "readTime": "1 min"
+  },
+  {
+    "slug": "a-mistake",
+    "title": "A Rocky Sprint or Two",
+    "date": "2025-09-18",
+    "readTime": "3 mins"
+  }
+] 

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog • Colton Morris</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Ctext y=%2796%27 font-size=%2796%27%3E%F0%9F%A6%A7%3C/text%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .blog-container { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+    .post-item { display: flex; align-items: baseline; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid rgba(15,23,42,0.08); }
+    .post-item a { text-decoration: none; color: var(--text-color); font-weight: 600; letter-spacing: -0.01em; }
+    .post-item a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .post-date { color: #64748b; font-variant-numeric: tabular-nums; }
+    .post-meta-row { display: flex; align-items: center; gap: 8px; }
+    .post-read { color: #64748b; }
+    .post-sep { opacity: 0.5; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .tag { font-size: 0.8rem; padding: 2px 8px; background: rgba(139, 69, 19, 0.1); color: var(--accent-color); border: 1px solid rgba(139, 69, 19, 0.2); border-radius: 0; text-decoration: none; }
+    .tag.active { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/index.html#home" class="brand">CM</a>
+      <ul class="nav-links">
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/books.html">Books</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="blog-container">
+    <h1 class="page-title">Blog</h1>
+    <p class="lead">Writing on projects, learning, and notes worth keeping.</p>
+    <div id="tagCloud" class="tags" aria-label="Tags"></div>
+    <div id="postList" class="mt-6"></div>
+  </main>
+
+  <section class="social-icons">
+    <a href="https://github.com/cmor03" target="_blank" rel="noopener noreferrer" class="icon-link github-icon" aria-label="GitHub Profile"></a>
+    <a href="https://www.linkedin.com/in/coltonmorris25" target="_blank" rel="noopener noreferrer" class="icon-link linkedin-icon" aria-label="LinkedIn Profile"></a>
+    <a href="mailto:dev.coltonmorris@gmail.com" class="icon-link email-icon" aria-label="Send Email"></a>
+  </section>
+
+  <div class="footer">
+    <footer>
+      <p>&copy; 2025 Colton Morris, all rights reserved.</p>
+      <p>Built with ❤️ and open-source software.</p>
+    </footer>
+  </div>
+
+  <script defer src="/script.js"></script>
+  <script>
+    function extractTagsFromMd(md) {
+      const tags = [];
+      const lines = md.trimEnd().split('\n');
+      const tagLineRegex = /^\s*(#[A-Za-z0-9-]+(?:\s+#[A-Za-z0-9-]+)*)\s*$/;
+      while (lines.length && tagLineRegex.test(lines[lines.length - 1])) {
+        const line = lines.pop();
+        const found = line.match(/#[A-Za-z0-9-]+/g) || [];
+        for (const t of found) tags.push(t.slice(1).toLowerCase());
+      }
+      return Array.from(new Set(tags));
+    }
+
+    async function loadPosts() {
+      try {
+        const res = await fetch('/blog/posts.json', { cache: 'no-store' });
+        const rawPosts = (await res.json());
+        // Augment with tags extracted from markdown bottom hashtags
+        const postsWithTags = await Promise.all(rawPosts.map(async (p) => {
+          try {
+            const md = await fetch(`/blog/posts/${encodeURIComponent(p.slug)}.md`, { cache: 'no-store' }).then(r => r.text());
+            const tags = extractTagsFromMd(md);
+            return { ...p, tags };
+          } catch (_) {
+            return { ...p, tags: [] };
+          }
+        }));
+
+        const params = new URLSearchParams(location.search);
+        const tagFilter = (params.get('tag') || '').toLowerCase();
+
+        // Build tag cloud
+        const allTags = Array.from(new Set(postsWithTags.flatMap(p => p.tags))).sort();
+        const tagCloud = document.getElementById('tagCloud');
+        if (tagCloud) {
+          const makeTag = (label, tag, isActive = false) => `<a class="tag${isActive ? ' active' : ''}" href="${tag ? `/blog.html?tag=${encodeURIComponent(tag)}` : '/blog.html'}">${label}</a>`;
+          const items = [makeTag('All', '', !tagFilter)].concat(allTags.map(t => makeTag(`#${t}`, t, t === tagFilter)));
+          tagCloud.innerHTML = items.join('');
+        }
+        let posts = postsWithTags.sort((a,b) => new Date(b.date) - new Date(a.date));
+        if (tagFilter) {
+          posts = posts.filter(p => p.tags.includes(tagFilter));
+          const lead = document.querySelector('.lead');
+          if (lead) lead.textContent = `Showing posts tagged #${tagFilter}`;
+        }
+
+        const list = document.getElementById('postList');
+        list.innerHTML = posts.map(p => {
+          const readStr = p.readTime ? `${p.readTime.replace('min','minute').trim()} read` : '';
+          const dateStr = new Date(p.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' });
+          return `
+          <div class="post-item">
+            <div><a href="/blog/post.html?slug=${encodeURIComponent(p.slug)}">${p.title}</a></div>
+            <div class="post-meta-row">
+              <time class="post-date">${dateStr}</time>
+              ${readStr ? `<span class="post-sep">•</span><span class="post-read">${readStr}</span>` : ``}
+            </div>
+          </div>
+        `;
+        }).join('');
+      } catch (e) {
+        document.getElementById('postList').innerHTML = '<p class="muted">Unable to load posts.</p>';
+        console.error(e);
+      }
+    }
+    loadPosts();
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+</body>
+</html>

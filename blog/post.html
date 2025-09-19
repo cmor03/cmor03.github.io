@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post • Colton Morris</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Ctext y=%2796%27 font-size=%2796%27%3E%F0%9F%A6%A7%3C/text%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .post-container { max-width: 850px; margin: 0 auto; padding: 2rem 1rem; }
+    .post-header { margin-bottom: 1.25rem; }
+    .post-title { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; }
+    .post-meta { color: #64748b; display: flex; align-items: center; gap: 8px; }
+    .post-content { line-height: 1.8; font-size: 1.0625rem; }
+    .post-content h2 { font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    .post-content p { margin: 1rem 0; }
+    .post-content ul { list-style: disc; padding-left: 1.25rem; margin: 1rem 0; }
+    .post-content ol { list-style: decimal; padding-left: 1.25rem; margin: 1rem 0; }
+    .post-content li { margin: 0.25rem 0; }
+    .post-content pre { background: rgba(15,23,42,0.04); padding: 1rem; border-radius: 12px; overflow-x: auto; }
+    .post-content code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.95em; }
+    .post-content blockquote { border-left: 3px solid rgba(15,23,42,0.15); padding-left: 1rem; color: #475569; margin: 1rem 0; }
+    .post-content hr { border: 0; border-top: 1px solid rgba(15,23,42,0.12); margin: 2rem 0; }
+    .post-content img { max-width: 100%; height: auto; }
+    .post-content a { color: #0ea5e9; text-decoration: underline; text-underline-offset: 3px; }
+    .post-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.25rem; }
+    .post-tag { font-size: 0.85rem; padding: 4px 10px; background: rgba(139, 69, 19, 0.1); color: var(--accent-color); border: 1px solid rgba(139, 69, 19, 0.2); border-radius: 0; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/index.html#home" class="brand">CM</a>
+      <ul class="nav-links">
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/books.html">Books</a></li>
+     </ul>
+    </div>
+  </nav>
+
+  <main class="post-container">
+    <header class="post-header">
+      <h1 id="postTitle" class="post-title">Loading…</h1>
+      <p id="postDate" class="post-meta"></p>
+    </header>
+    <article id="postContent" class="post-content"></article>
+  </main>
+
+  <section class="social-icons">
+    <a href="https://github.com/cmor03" target="_blank" rel="noopener noreferrer" class="icon-link github-icon" aria-label="GitHub Profile"></a>
+    <a href="https://www.linkedin.com/in/coltonmorris25" target="_blank" rel="noopener noreferrer" class="icon-link linkedin-icon" aria-label="LinkedIn Profile"></a>
+    <a href="mailto:dev.coltonmorris@gmail.com" class="icon-link email-icon" aria-label="Send Email"></a>
+  </section>
+
+  <div class="footer">
+    <footer>
+      <p>&copy; 2025 Colton Morris, all rights reserved.</p>
+      <p>Built with ❤️ and open-source software.</p>
+    </footer>
+  </div>
+
+  <script defer src="/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    function extractTagsFromMd(md) {
+      const tags = [];
+      const lines = md.trimEnd().split('\n');
+      const tagLineRegex = /^\s*(#[A-Za-z0-9-]+(?:\s+#[A-Za-z0-9-]+)*)\s*$/;
+      while (lines.length && tagLineRegex.test(lines[lines.length - 1])) {
+        const line = lines.pop();
+        const found = line.match(/#[A-Za-z0-9-]+/g) || [];
+        for (const t of found) tags.push(t.slice(1).toLowerCase());
+      }
+      return Array.from(new Set(tags));
+    }
+
+    async function loadPost() {
+      const params = new URLSearchParams(location.search);
+      const slug = params.get('slug');
+      if (!slug) {
+        document.getElementById('postTitle').textContent = 'Post not found';
+        return;
+      }
+      try {
+        const postsRes = await fetch('/blog/posts.json', { cache: 'no-store' });
+        const posts = await postsRes.json();
+        const meta = posts.find(p => p.slug === slug);
+        if (meta) {
+          document.title = meta.title + ' • Colton Morris';
+          document.getElementById('postTitle').textContent = meta.title;
+          const readStr = meta.readTime ? `${meta.readTime.replace('min','minute').trim()} read` : '';
+          const dateStr = new Date(meta.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' });
+          document.getElementById('postDate').innerHTML = `<time>${dateStr}</time>${readStr ? ` <span class="post-sep">•</span> <span class="post-read">${readStr}</span>` : ``}`;
+        }
+        const res = await fetch(`/blog/posts/${encodeURIComponent(slug)}.md`, { cache: 'no-store' });
+        let md = await res.text();
+        marked.setOptions({ gfm: true, breaks: true, headerIds: true, mangle: false });
+        const tags = extractTagsFromMd(md);
+        // Strip trailing hashtag-only lines so they don't render in the article body
+        const lines = md.trimEnd().split('\n');
+        const tagLineRegex = /^\s*(#[A-Za-z0-9-]+(?:\s+#[A-Za-z0-9-]+)*)\s*$/;
+        while (lines.length && tagLineRegex.test(lines[lines.length - 1])) {
+          lines.pop();
+        }
+        md = lines.join('\n');
+        const html = marked.parse(md);
+        document.getElementById('postContent').innerHTML = html;
+        if (tags.length) {
+          const tagRow = document.createElement('div');
+          tagRow.className = 'post-tags';
+          tagRow.innerHTML = tags.map(t => `<a class="post-tag" href="/blog.html?tag=${encodeURIComponent(t)}">#${t}</a>`).join('');
+          document.querySelector('main.post-container').appendChild(tagRow);
+        }
+      } catch (e) {
+        document.getElementById('postTitle').textContent = 'Failed to load post';
+        console.error(e);
+      }
+    }
+    loadPost();
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+</body>
+</html> 
