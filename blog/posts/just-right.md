@@ -10,4 +10,4 @@ Today, I'm happy to share my own personal website, inspired by the authenticity 
 
 www.coltonmorris.dev
 
-#lifeadvice #friends #justright
+#lifeadvice #friends
