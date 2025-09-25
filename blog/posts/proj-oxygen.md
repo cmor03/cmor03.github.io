@@ -17,7 +17,7 @@ Leadership doesn't start the day you become a manager. It's an ongoing process o
 
 You're a leader in more ways than you might think. Good luck!
 
-**Sources:**
+**Further reading:**
 
 - [How Google Sold Its Engineers on Management](https://hbr.org/2013/12/how-google-sold-its-engineers-on-management)
 - [Project Oxygen](https://www.betterup.com/blog/project-oxygen)
